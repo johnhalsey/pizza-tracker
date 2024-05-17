@@ -2,6 +2,8 @@
 
 @section('content')
 
-<orders-list></orders-list>
+    <div class="mx-auto my-5 container">
+        <orders-list></orders-list>
+    </div>
 
 @endsection
