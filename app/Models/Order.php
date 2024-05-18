@@ -12,6 +12,7 @@ class Order extends Model
     const BUILDING = 'Building';
     const PENDING = 'Pending';
     const STARTED = 'Started';
+    const BAKING = 'Baking';
     const READY = 'Ready';
     const COMPLETE = 'Complete';
 
@@ -27,9 +28,14 @@ class Order extends Model
             return self::READY;
         }
 
-        // if any pizza is in the oven, the order is started
+        // if any pizza is in the oven, the order is baking
         if ($this->pizzas->contains(fn($pizza) => $pizza->status() === Pizza::IN_OVEN)) {
-            return self::STARTED;
+            return self::BAKING;
+        }
+
+        // if any pizza is in the oven OR Ready, the order is baking
+        if ($this->pizzas->contains(fn($pizza) => $pizza->status() === Pizza::IN_OVEN || $pizza->status() === Pizza::READY)) {
+            return self::BAKING;
         }
 
         // if any pizza is started, the order is started

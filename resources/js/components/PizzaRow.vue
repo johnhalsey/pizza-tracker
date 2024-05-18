@@ -2,7 +2,7 @@
     <div class="flex justify-between"
     >
         <div class="p-3">
-            <i :class="statusIcon"></i>
+            <span class="text-2xl">{{ statusIcon }}</span>
         </div>
         <div class="p-3">
             {{ pizza.type }}
@@ -34,22 +34,22 @@ export default {
         statusIcon () {
             switch (this.pizza.status) {
                 case 'Pending':
-                    return 'fa-solid fa-clock';
+                    return '⏱️';
                     break;
                 case 'Started':
-                    return 'fa-solid fa-utensils';
+                    return '🔪';
                     break;
                 case 'In the oven':
-                    return 'fa-solid fa-fire';
+                    return '🔥';
                     break;
                 case 'Ready':
-                    return 'fa-solid fa-check';
+                    return '✅';
                     break;
                 case 'Delivered':
-                    return 'fa-solid fa-truck';
+                    return '🚚';
                     break;
                 default:
-                    return 'fa-solid fa-clock';
+                    return '⏱️';
             }
         },
         nextStep () {

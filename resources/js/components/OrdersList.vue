@@ -7,7 +7,7 @@
                 <div>
                     <h2 class="font-semibold">#{{ order.order_number }}</h2>
                     {{ order.pizzas.length }} Pizzas in order
-                    <div>
+                    <div class="mt-2">
                         <span :class="statusColour(order.status)"
                               class="text-white px-3 py-1">{{ order.status }}</span>
                     </div>
@@ -45,9 +45,7 @@ export default {
         }
     },
 
-    computed:{
-
-    },
+    computed: {},
 
     mounted () {
         this.fetchOrders();
@@ -71,6 +69,10 @@ export default {
                     break;
                 case 'Started':
                     return 'bg-blue-500';
+                    break;
+                case 'Baking':
+                    return 'bg-teal-500';
+                    break
                 case 'Ready':
                     return 'bg-green-500';
                     break;
