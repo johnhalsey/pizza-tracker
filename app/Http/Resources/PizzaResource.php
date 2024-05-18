@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -16,8 +17,8 @@ class PizzaResource extends JsonResource
     {
         return [
             'id'   => $this->id,
-            'type' => $this->type,
-            'size' => $this->size,
+            'type' => Str::ucfirst($this->type),
+            'size' => Str::ucfirst($this->size),
             'status' => $this->status()
         ];
     }

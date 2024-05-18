@@ -17,6 +17,10 @@ class Pizza extends Model
 
     public function status()
     {
+        if ($this->delivered_at) {
+            return self::DELIVERED;
+        }
+
         if ($this->ready_at) {
             return self::READY;
         }
