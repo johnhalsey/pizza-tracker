@@ -20,6 +20,10 @@ class Order extends Model
 
     public function status()
     {
+        if ($this->pizzas->isEmpty()) {
+            return self::BUILDING;
+        }
+
         // If all pizzas are delivered, the order is complete
         if ($this->pizzas->every(fn($pizza) => $pizza->status() === Pizza::DELIVERED)) {
             return self::COMPLETE;
@@ -45,13 +49,8 @@ class Order extends Model
             return self::STARTED;
         }
 
-        // if any pizza exists, the order is pending
-        if ($this->pizzas->isNotEmpty()) {
-            return self::PENDING;
-        }
-
         // just in case an order comes in with no pizzas
-        return self::BUILDING;
+        return self::PENDING;
     }
 
     public function pizzas(): \Illuminate\Database\Eloquent\Relations\HasMany

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -22,6 +23,10 @@ class PizzaFactory extends Factory
             },
             'type'          => $this->faker->randomElement(['pepperoni', 'hawaiian', 'veggie']),
             'size'          => $this->faker->randomElement(['small', 'medium', 'large']),
+            'started_at'    => null,
+            'in_oven_at'    => null,
+            'ready_at'      => null,
+            'delivered_at'  => null,
         ];
     }
 }

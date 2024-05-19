@@ -2,17 +2,15 @@
 
 namespace Tests\Feature;
 
-use App\Models\Order;
+use Tests\TestCase;
 use App\Models\Pizza;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Tests\TestCase;
 
 class OrderControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    #[Test]
+    /** @test */
     public function user_can_get_list_of_orders()
     {
         Pizza::factory(3)->create();
@@ -25,7 +23,7 @@ class OrderControllerTest extends TestCase
         $this->assertCount(3, $json);
     }
 
-    #[Test]
+    /** @test */
     public function asset_pos_can_push_new_orders()
     {
         $response = $this->postJson('/api/orders', [

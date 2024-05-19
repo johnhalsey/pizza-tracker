@@ -15,7 +15,7 @@ class Pizza extends Model
     const READY = 'Ready';
     const DELIVERED = 'Delivered';
 
-    protected $fillable = ['type', 'size'];
+    protected $guarded = ['id'];
 
     public function status()
     {
