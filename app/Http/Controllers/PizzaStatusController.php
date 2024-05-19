@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pizza;
 use Illuminate\Http\Request;
+use App\Events\PizzaStatusUpdated;
 
 class PizzaStatusController extends Controller
 {
@@ -12,7 +13,7 @@ class PizzaStatusController extends Controller
         $pizza->started_at = now();
         $pizza->save();
 
-        // send http request to website
+        event(new PizzaStatusUpdated($pizza));
 
         return response()->json([
             'message' => 'Pizza started'
@@ -24,7 +25,7 @@ class PizzaStatusController extends Controller
         $pizza->in_oven_at = now();
         $pizza->save();
 
-        // send http request to website
+        event(new PizzaStatusUpdated($pizza));
 
         return response()->json([
             'message' => 'Pizza in oven'
@@ -36,7 +37,7 @@ class PizzaStatusController extends Controller
         $pizza->ready_at = now();
         $pizza->save();
 
-        // send http request to website
+        event(new PizzaStatusUpdated($pizza));
 
         return response()->json([
             'message' => 'Pizza ready'
@@ -48,7 +49,7 @@ class PizzaStatusController extends Controller
         $pizza->delivered_at = now();
         $pizza->save();
 
-        // send http request to website
+        event(new PizzaStatusUpdated($pizza));
 
         return response()->json([
             'message' => 'Pizza delivered'

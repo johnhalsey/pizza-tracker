@@ -19,6 +19,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        $this->when()
+            ->needs(\App\Contracts\WebsiteApiInterface::class)
+            ->give(\App\Services\WebsiteApi::class);
     }
 }
