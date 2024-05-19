@@ -14,7 +14,7 @@ Route::get('api/orders', [OrderController::class, 'index'])->name('orders.index'
 Route::post('api/orders', [OrderController::class, 'store'])->name('orders.store');
 
 // endpoints for us to hit when order status change
-Route::post('api/pizzas/{pizza}/started', [PizzaStatusController::class, 'start'])->name('orders.start');
-Route::post('api/pizzas/{pizza}/in-oven', [PizzaStatusController::class, 'inOven'])->name('orders.inOven');
-Route::post('api/pizzas/{pizza}/ready', [PizzaStatusController::class, 'ready'])->name('orders.ready');
-Route::post('api/pizzas/{pizza}/delivered', [PizzaStatusController::class, 'delivered'])->name('orders.delivered');
+Route::put('api/pizzas/{pizza}/started', [PizzaStatusController::class, 'start'])->name('orders.start');
+Route::put('api/pizzas/{pizza}/in-oven', [PizzaStatusController::class, 'inOven'])->name('orders.inOven');
+Route::put('api/pizzas/{pizza}/ready', [PizzaStatusController::class, 'ready'])->name('orders.ready');
+Route::put('api/pizzas/{pizza}/delivered', [PizzaStatusController::class, 'delivered'])->name('orders.delivered');

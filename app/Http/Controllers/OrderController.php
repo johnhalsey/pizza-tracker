@@ -22,13 +22,15 @@ class OrderController extends Controller
             'order_number' => $request->input('order_number'),
         ]);
 
-        foreach ($request->input('pizza') as $pizza) {
+        foreach ($request->input('pizzas') as $pizza) {
             $order->pizzas()->create([
                 'type' => $pizza['type'],
                 'size' => $pizza['size'],
             ]);
         }
 
-        return response('OK');
+        return response()->json([
+            'message' => 'Order created',
+        ], 201);
     }
 }

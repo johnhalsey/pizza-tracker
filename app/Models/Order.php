@@ -16,6 +16,8 @@ class Order extends Model
     const READY = 'Ready';
     const COMPLETE = 'Complete';
 
+    protected $fillable = ['order_number'];
+
     public function status()
     {
         // If all pizzas are delivered, the order is complete

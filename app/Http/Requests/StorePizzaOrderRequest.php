@@ -37,9 +37,9 @@ class StorePizzaOrderRequest extends FormRequest
     {
         return [
             'order_number' => 'required|string',
-            'pizza'        => 'required|array',
-            'pizza.*.type' => 'required|string',
-            'pizza.*.size' => 'required|string',
+            'pizzas'        => 'required|array',
+            'pizzas.*.type' => 'required|string',
+            'pizzas.*.size' => 'required|string',
 
         ];
     }

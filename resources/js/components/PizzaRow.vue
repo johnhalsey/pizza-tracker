@@ -73,7 +73,7 @@ export default {
     },
     methods: {
         updateStatus (action) {
-            axios.post('/api/pizzas/' + this.pizza.id + '/' + action)
+            axios.put('/api/pizzas/' + this.pizza.id + '/' + action)
                 .then(response => {
                     this.$emit('updated')
                 })

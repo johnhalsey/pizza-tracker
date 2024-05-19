@@ -15,6 +15,8 @@ class Pizza extends Model
     const READY = 'Ready';
     const DELIVERED = 'Delivered';
 
+    protected $fillable = ['type', 'size'];
+
     public function status()
     {
         if ($this->delivered_at) {
