@@ -33,7 +33,7 @@ class OrderControllerTest extends TestCase
                 ['type' => 'meat feast', 'size' => 'large'],
                 ['type' => 'vegetarian', 'size' => 'small'],
             ],
-        ])->dump()
+        ])
             ->assertStatus(201);
 
         $json = $response->json();

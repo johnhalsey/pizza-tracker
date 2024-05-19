@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Pizza;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Http;
 use App\Contracts\WebsiteApiInterface;
 
@@ -25,7 +26,7 @@ class WebsiteApi implements WebsiteApiInterface
     {
         // send Http post request to update the status of the order
         $response = Http::withToken($this->apiToken)
-            ->post("{$this->apiBaseUrl}/orders/{$pizza->order_id}/pizza/{$pizza->id}/status/{$pizza->status()}")
+            ->post($this->apiBaseUrl . '/order/' . $pizza->order_id . '/pizza/' . $pizza->id . '/status/' . Str::lower($pizza->status()))
             ->throw();
     }
 }

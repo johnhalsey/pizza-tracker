@@ -4,6 +4,8 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use App\Models\Pizza;
+use App\Events\PizzaStatusUpdated;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class PizzaStatusControllerTest extends TestCase
@@ -15,8 +17,12 @@ class PizzaStatusControllerTest extends TestCase
     {
         $pizza = Pizza::factory()->create();
 
+        Event::fake();
+
         $response = $this->putJson('/api/pizzas/' . $pizza->id . '/started')
             ->assertStatus(200);
+
+        Event::assertDispatched(PizzaStatusUpdated::class);
 
         $this->assertEquals(Pizza::STARTED, $pizza->fresh()->status());
     }
@@ -26,8 +32,12 @@ class PizzaStatusControllerTest extends TestCase
     {
         $pizza = Pizza::factory()->create();
 
+        Event::fake();
+
         $response = $this->putJson('/api/pizzas/' . $pizza->id . '/in-oven')
             ->assertStatus(200);
+
+        Event::assertDispatched(PizzaStatusUpdated::class);
 
         $this->assertEquals(Pizza::IN_OVEN, $pizza->fresh()->status());
     }
@@ -37,8 +47,12 @@ class PizzaStatusControllerTest extends TestCase
     {
         $pizza = Pizza::factory()->create();
 
+        Event::fake();
+
         $response = $this->putJson('/api/pizzas/' . $pizza->id . '/ready')
             ->assertStatus(200);
+
+        Event::assertDispatched(PizzaStatusUpdated::class);
 
         $this->assertEquals(Pizza::READY, $pizza->fresh()->status());
     }
@@ -48,8 +62,12 @@ class PizzaStatusControllerTest extends TestCase
     {
         $pizza = Pizza::factory()->create();
 
+        Event::fake();
+
         $response = $this->putJson('/api/pizzas/' . $pizza->id . '/delivered')
             ->assertStatus(200);
+
+        Event::assertDispatched(PizzaStatusUpdated::class);
 
         $this->assertEquals(Pizza::DELIVERED, $pizza->fresh()->status());
     }
