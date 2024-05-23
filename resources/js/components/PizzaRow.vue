@@ -58,7 +58,7 @@ export default {
                     return {label: 'Start', action: 'started'};
                     break;
                 case 'Started':
-                    return {label: 'In the oven', action: 'in-oven'};
+                    return {label: 'In the oven', action: 'in_oven'};
                     break;
                 case 'In the oven':
                     return {label: 'Ready', action: 'ready'};
@@ -73,7 +73,7 @@ export default {
     },
     methods: {
         updateStatus (action) {
-            axios.put('/api/pizzas/' + this.pizza.id + '/' + action)
+            axios.put('/api/pizzas/' + this.pizza.id, {status: action}
                 .then(response => {
                     this.$emit('updated')
                 })
