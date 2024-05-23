@@ -1,4 +1,4 @@
-# Pizza Tracker Test
+# Pizza Tracker
 
 To run this application locally, follow these steps;
 
