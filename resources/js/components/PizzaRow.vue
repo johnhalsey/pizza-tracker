@@ -77,9 +77,7 @@ export default {
                 .then(response => {
                     this.$emit('updated')
                 })
-                .catch(error => {
-                    console.log(error);
-                });
+            )
         }
     }
 }
