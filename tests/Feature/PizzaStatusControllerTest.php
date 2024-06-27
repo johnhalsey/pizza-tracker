@@ -20,7 +20,7 @@ class PizzaStatusControllerTest extends TestCase
         Event::fake();
 
         $response = $this->putJson('/api/pizzas/' . $pizza->id . '/status', [
-            'status' => Pizza::STARTED
+            'status' => 'started'
         ])
             ->assertStatus(200);
 
@@ -37,7 +37,7 @@ class PizzaStatusControllerTest extends TestCase
         Event::fake();
 
         $response = $this->putJson('/api/pizzas/' . $pizza->id . '/status', [
-            'status' => Pizza::IN_OVEN
+            'status' => 'in_oven'
         ])
             ->assertStatus(200);
 
@@ -54,7 +54,7 @@ class PizzaStatusControllerTest extends TestCase
         Event::fake();
 
         $response = $this->putJson('/api/pizzas/' . $pizza->id . '/status', [
-            'status' => Pizza::READY
+            'status' => 'ready'
         ])
             ->assertStatus(200);
 
@@ -71,7 +71,7 @@ class PizzaStatusControllerTest extends TestCase
         Event::fake();
 
         $response = $this->putJson('/api/pizzas/' . $pizza->id . '/status', [
-            'status' => Pizza::DELIVERED
+            'status' => 'delivered'
         ])
             ->assertStatus(200);
 

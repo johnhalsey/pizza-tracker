@@ -26,7 +26,7 @@ class UpdatePizzaStatusRequest extends FormRequest
             'status' => [
                 'required',
                 'string',
-                'in:' . PizzaStatus::cases()
+                'in:' . implode(',', array_column(PizzaStatus::cases(), 'value'))
             ]
         ];
     }
