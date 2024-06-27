@@ -19,7 +19,9 @@ class PizzaStatusControllerTest extends TestCase
 
         Event::fake();
 
-        $response = $this->putJson('/api/pizzas/' . $pizza->id . '/started')
+        $response = $this->putJson('/api/pizzas/' . $pizza->id . '/status', [
+            'status' => Pizza::STARTED
+        ])
             ->assertStatus(200);
 
         Event::assertDispatched(PizzaStatusUpdated::class);
@@ -34,7 +36,9 @@ class PizzaStatusControllerTest extends TestCase
 
         Event::fake();
 
-        $response = $this->putJson('/api/pizzas/' . $pizza->id . '/in-oven')
+        $response = $this->putJson('/api/pizzas/' . $pizza->id . '/status', [
+            'status' => Pizza::IN_OVEN
+        ])
             ->assertStatus(200);
 
         Event::assertDispatched(PizzaStatusUpdated::class);
@@ -49,7 +53,9 @@ class PizzaStatusControllerTest extends TestCase
 
         Event::fake();
 
-        $response = $this->putJson('/api/pizzas/' . $pizza->id . '/ready')
+        $response = $this->putJson('/api/pizzas/' . $pizza->id . '/status', [
+            'status' => Pizza::READY
+        ])
             ->assertStatus(200);
 
         Event::assertDispatched(PizzaStatusUpdated::class);
@@ -64,7 +70,9 @@ class PizzaStatusControllerTest extends TestCase
 
         Event::fake();
 
-        $response = $this->putJson('/api/pizzas/' . $pizza->id . '/delivered')
+        $response = $this->putJson('/api/pizzas/' . $pizza->id . '/status', [
+            'status' => Pizza::DELIVERED
+        ])
             ->assertStatus(200);
 
         Event::assertDispatched(PizzaStatusUpdated::class);
