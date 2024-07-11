@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use App\Models\Pizza;
+use App\Enums\PizzaStatus;
 use App\Events\PizzaStatusUpdated;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -26,7 +27,7 @@ class PizzaStatusControllerTest extends TestCase
 
         Event::assertDispatched(PizzaStatusUpdated::class);
 
-        $this->assertEquals(Pizza::STARTED, $pizza->fresh()->status());
+        $this->assertEquals(PizzaStatus::STARTED, $pizza->fresh()->status());
     }
 
     /** @test */
@@ -43,7 +44,7 @@ class PizzaStatusControllerTest extends TestCase
 
         Event::assertDispatched(PizzaStatusUpdated::class);
 
-        $this->assertEquals(Pizza::IN_OVEN, $pizza->fresh()->status());
+        $this->assertEquals(PizzaStatus::IN_OVEN, $pizza->fresh()->status());
     }
 
     /** @test */
@@ -60,7 +61,7 @@ class PizzaStatusControllerTest extends TestCase
 
         Event::assertDispatched(PizzaStatusUpdated::class);
 
-        $this->assertEquals(Pizza::READY, $pizza->fresh()->status());
+        $this->assertEquals(PizzaStatus::READY, $pizza->fresh()->status());
     }
 
     /** @test */
@@ -77,7 +78,7 @@ class PizzaStatusControllerTest extends TestCase
 
         Event::assertDispatched(PizzaStatusUpdated::class);
 
-        $this->assertEquals(Pizza::DELIVERED, $pizza->fresh()->status());
+        $this->assertEquals(PizzaStatus::DELIVERED, $pizza->fresh()->status());
     }
 
 

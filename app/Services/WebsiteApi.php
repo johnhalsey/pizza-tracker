@@ -26,7 +26,7 @@ class WebsiteApi implements WebsiteApiInterface
     {
         // send Http post request to update the status of the order
         $response = Http::withToken($this->apiToken)
-            ->post($this->apiBaseUrl . '/order/' . $pizza->order_id . '/pizza/' . $pizza->id . '/status/' . Str::lower($pizza->status()))
+            ->post($this->apiBaseUrl . '/order/' . $pizza->order_id . '/pizza/' . $pizza->id . '/status/' . Str::lower($pizza->status()->value))
             ->throw();
     }
 }

@@ -14,7 +14,7 @@ class PizzaStatusController extends Controller
     public function update(UpdatePizzaStatusRequest $request, Pizza $pizza): JsonResponse
     {
         $pizza->update([
-            $request->input('status') . '_at' => Carbon::now()()
+            $request->input('status') . '_at' => Carbon::now()
         ]);
 
         PizzaStatusUpdated::dispatch($pizza);

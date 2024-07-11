@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use App\Models\Pizza;
-use App\Models\Order;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class OrderControllerTest extends TestCase
@@ -17,7 +16,6 @@ class OrderControllerTest extends TestCase
         Pizza::factory(3)->create();
 
         $response = $this->getJson('/api/orders')
-            ->dump()
             ->assertStatus(200);
 
         $json = $response->json()['data'];

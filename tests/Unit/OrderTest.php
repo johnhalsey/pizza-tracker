@@ -5,6 +5,7 @@ namespace Tests\Unit;
 use Tests\TestCase;
 use App\Models\Order;
 use App\Models\Pizza;
+use App\Enums\OrderStatus;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class OrderTest extends TestCase
@@ -19,7 +20,7 @@ class OrderTest extends TestCase
         Pizza::factory()->create(['order_id' => $order->id]);
         Pizza::factory()->create(['order_id' => $order->id]);
 
-        $this->assertEquals(Order::PENDING, $order->status());
+        $this->assertEquals(OrderStatus::PENDING, $order->status());
     }
 
     /** @test */
@@ -30,7 +31,7 @@ class OrderTest extends TestCase
         Pizza::factory()->create(['order_id' => $order->id]);
         Pizza::factory()->create(['order_id' => $order->id]);
 
-        $this->assertEquals(Order::STARTED, $order->status());
+        $this->assertEquals(OrderStatus::STARTED, $order->status());
     }
 
     /** @test */
@@ -41,7 +42,7 @@ class OrderTest extends TestCase
         Pizza::factory()->create(['order_id' => $order->id, 'started_at' => now(), 'in_oven_at' => now()]);
         Pizza::factory()->create(['order_id' => $order->id]);
 
-        $this->assertEquals(Order::BAKING, $order->status());
+        $this->assertEquals(OrderStatus::BAKING, $order->status());
     }
 
     /** @test */
@@ -52,7 +53,7 @@ class OrderTest extends TestCase
         Pizza::factory()->create(['order_id' => $order->id, 'started_at' => now(), 'in_oven_at' => now(), 'ready_at' => now()]);
         Pizza::factory()->create(['order_id' => $order->id, 'started_at' => now(), 'in_oven_at' => now(), 'ready_at' => now()]);
 
-        $this->assertEquals(Order::READY, $order->status());
+        $this->assertEquals(OrderStatus::READY, $order->status());
     }
 
     /** @test */
@@ -63,7 +64,7 @@ class OrderTest extends TestCase
         Pizza::factory()->create(['order_id' => $order->id, 'started_at' => now(), 'in_oven_at' => now(), 'ready_at' => now(), 'delivered_at' => now()]);
         Pizza::factory()->create(['order_id' => $order->id, 'started_at' => now(), 'in_oven_at' => now(), 'ready_at' => now(), 'delivered_at' => now()]);
 
-        $this->assertEquals(Order::COMPLETE, $order->status());
+        $this->assertEquals(OrderStatus::COMPLETE, $order->status());
     }
 
     /** @test */
@@ -71,7 +72,7 @@ class OrderTest extends TestCase
     {
         $order = Order::factory()->create();
 
-        $this->assertEquals(Order::BUILDING, $order->status());
+        $this->assertEquals(OrderStatus::BUILDING, $order->status());
     }
 
 }

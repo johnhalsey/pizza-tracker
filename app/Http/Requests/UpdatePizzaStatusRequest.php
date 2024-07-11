@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\PizzaStatus;
+use App\Enums\PizzaStatus;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdatePizzaStatusRequest extends FormRequest

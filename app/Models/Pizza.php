@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use App\PizzaStatus;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Enums\PizzaStatus;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Pizza extends Model
 {
@@ -12,25 +12,25 @@ class Pizza extends Model
 
     protected $guarded = ['id'];
 
-    public function status(): string
+    public function status(): PizzaStatus
     {
         if ($this->delivered_at) {
-            return PizzaStatus::DELIVERED->getLabel();
+            return PizzaStatus::DELIVERED;
         }
 
         if ($this->ready_at) {
-            return PizzaStatus::READY->getLabel();
+            return PizzaStatus::READY;
         }
 
         if ($this->in_oven_at) {
-            return PizzaStatus::IN_OVEN->getLabel();
+            return PizzaStatus::IN_OVEN;
         }
 
         if ($this->started_at) {
-            return PizzaStatus::STARTED->getLabel();
+            return PizzaStatus::STARTED;
         }
 
-        return PizzaStatus::PENDING->getLabel();
+        return PizzaStatus::PENDING;
     }
 
     public function order(): \Illuminate\Database\Eloquent\Relations\BelongsTo

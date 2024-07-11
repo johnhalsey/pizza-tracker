@@ -2,8 +2,9 @@
 
 namespace Tests\Unit;
 
-use App\Models\Pizza;
 use Tests\TestCase;
+use App\Models\Pizza;
+use App\Enums\PizzaStatus;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class PizzaTest extends TestCase
@@ -15,7 +16,7 @@ class PizzaTest extends TestCase
     {
         $pizza = Pizza::factory()->create();
 
-        $this->assertEquals(Pizza::PENDING, $pizza->status());
+        $this->assertEquals(PizzaStatus::PENDING, $pizza->status());
     }
 
     /** @test */
@@ -23,7 +24,7 @@ class PizzaTest extends TestCase
     {
         $pizza = Pizza::factory()->create(['started_at' => now()]);
 
-        $this->assertEquals(Pizza::STARTED, $pizza->status());
+        $this->assertEquals(PizzaStatus::STARTED, $pizza->status());
     }
 
     /** @test */
@@ -31,7 +32,7 @@ class PizzaTest extends TestCase
     {
         $pizza = Pizza::factory()->create(['in_oven_at' => now()]);
 
-        $this->assertEquals(Pizza::IN_OVEN, $pizza->status());
+        $this->assertEquals(PizzaStatus::IN_OVEN, $pizza->status());
     }
 
     /** @test */
@@ -39,7 +40,7 @@ class PizzaTest extends TestCase
     {
         $pizza = Pizza::factory()->create(['ready_at' => now()]);
 
-        $this->assertEquals(Pizza::READY, $pizza->status());
+        $this->assertEquals(PizzaStatus::READY, $pizza->status());
     }
 
     /** @test */
@@ -47,6 +48,6 @@ class PizzaTest extends TestCase
     {
         $pizza = Pizza::factory()->create(['delivered_at' => now()]);
 
-        $this->assertEquals(Pizza::DELIVERED, $pizza->status());
+        $this->assertEquals(PizzaStatus::DELIVERED, $pizza->status());
     }
 }

@@ -22,7 +22,7 @@ class PizzaStatusUpdatedTest extends TestCase
         event(new PizzaStatusUpdated($pizza));
 
         Http::assertSent(function ($request) use ($pizza) {
-            return $request->url() === 'https://myperfectpizza.com/api/order/' . $pizza->order_id . '/pizza/' . $pizza->id . '/status/' . Str::lower($pizza->status());
+            return $request->url() === 'https://myperfectpizza.com/api/order/' . $pizza->order_id . '/pizza/' . $pizza->id . '/status/' . Str::lower($pizza->status()->value);
         });
     }
 }

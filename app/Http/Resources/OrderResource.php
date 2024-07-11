@@ -17,7 +17,7 @@ class OrderResource extends JsonResource
         return [
             'id'            => $this->id,
             'order_number'  => $this->order_number,
-            'status'        => $this->status(),
+            'status'        => $this->status()->getLabel(),
             'pizzas'        => PizzaResource::collection($this->pizzas),
             'created_at'    => $this->created_at,
         ];
