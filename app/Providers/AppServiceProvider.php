@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Events\PizzaStatusUpdated;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
+use App\Listeners\SendPizzaStatusUpdate;
 
 class AppServiceProvider extends ServiceProvider
 {

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\PizzaStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -9,33 +10,27 @@ class Pizza extends Model
 {
     use HasFactory;
 
-    const PENDING = 'Pending';
-    const STARTED = 'Started';
-    const IN_OVEN = 'In the oven';
-    const READY = 'Ready';
-    const DELIVERED = 'Delivered';
-
     protected $guarded = ['id'];
 
-    public function status()
+    public function status(): string
     {
         if ($this->delivered_at) {
-            return self::DELIVERED;
+            return PizzaStatus::DELIVERED->getLabel();
         }
 
         if ($this->ready_at) {
-            return self::READY;
+            return PizzaStatus::READY->getLabel();
         }
 
         if ($this->in_oven_at) {
-            return self::IN_OVEN;
+            return PizzaStatus::IN_OVEN->getLabel();
         }
 
         if ($this->started_at) {
-            return self::STARTED;
+            return PizzaStatus::STARTED->getLabel();
         }
 
-        return self::PENDING;
+        return PizzaStatus::PENDING->getLabel();
     }
 
     public function order(): \Illuminate\Database\Eloquent\Relations\BelongsTo

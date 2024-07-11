@@ -2,23 +2,22 @@
 
 namespace App\Http\Controllers\Api;
 
+use Carbon\Carbon;
 use App\Models\Pizza;
+use Illuminate\Http\JsonResponse;
 use App\Events\PizzaStatusUpdated;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdatePizzaStatusRequest;
-use function now;
-use function event;
-use function response;
 
 class PizzaStatusController extends Controller
 {
-    public function update(UpdatePizzaStatusRequest $request, Pizza $pizza)
+    public function update(UpdatePizzaStatusRequest $request, Pizza $pizza): JsonResponse
     {
         $pizza->update([
-            $request->input('status') . '_at' => now()
+            $request->input('status') . '_at' => Carbon::now()()
         ]);
 
-        event(new PizzaStatusUpdated($pizza));
+        PizzaStatusUpdated::dispatch($pizza);
 
         return response()->json([
             'message' => 'Pizza status updated'
