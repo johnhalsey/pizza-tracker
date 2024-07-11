@@ -16,8 +16,8 @@ I've added the ability for users to be able mark pizzas as
 - Ready
 - Delivered
 
-I also added the ability for an order to to include many pizzas, and the status of the whole order is calculated from the statuses of the pizzas within the order.
+I also added the ability for an order to include many pizzas, and the status of the whole order is calculated from the statuses of the pizzas within the order.
 
 When the user updates the status of a pizza, the UI updates in real time so you can see the status of all pizzas and orders.
 
-Feature and unit tests for this can be run in the termianl `php artisan test`.
+Feature and unit tests for this can be run in the terminal with `php artisan test`.
